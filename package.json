@@ -1,0 +1,28 @@
+{
+  "name": "metric-imperial-converter",
+  "version": "1.0.0",
+  "description": "Metric and imperial conversion calculator",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denisediniz/metric-imperial-converter.git"
+  },
+  "author": "Denise Diniz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/denisediniz/metric-imperial-converter/issues"
+  },
+  "homepage": "https://github.com/denisediniz/metric-imperial-converter#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "body-parser": "^1.15.2",
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.2.0",
+    "helmet": "^3.1.0",
+    "cors": "^2.8.5"
+  }
+}
