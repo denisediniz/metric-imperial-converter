@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Metric-Imperial Converter</title>
+    <meta name="description" content="Metric and imperial conversion calculator.">
+    <link id="favicon" rel="icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA42SNG/NkjRDwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHc1rAB3NawAdjSqAP///wD///8A////ADZI0b82SNH/NkjR/zZI0f82SNH/NkjROGotmQB0M6gAAAAAAAAAAAB0MqcAdDKnAG8woQAAAAAL////ADZI0b82SNH/NkjR/zZI0f82SNH/NkjR/zZI0f82SNE4ZSmRAAAAAAAAAAAA////AP///wD///8ANkjR/zZI0Q82SNH/NkjR/zZI0f82SNH/Pz8/AjZI0f82SNH/NkjR/zZI0Tj///8A////AP///wD///8A////ADZI0f82SNH/NkjR/zZI0f82SNH/v7+/AP///wC/v78ANkjR/zZI0f82SNH/NkjRjr+/vwD///8A////AH9/fwA2SNH/NkjR/zZI0f82SNH/AAAAAv///wD///8A////AP///wA2SNH/NkjR/zZI0f82SNGO////AH9/fwF/f38BNkjR/zZI0f82SNH/NkjR/zZI0f8AAAADAAAADv6QTYz+kE2M/pBNjDZI0b82SNH/AAAABQAAAAn+kE3//pBNjDZI0f82SNH/NkjR/zZI0Q8AAAAC/pBN//6QTf/+kE3//pBN//6QTf9/f38Af39/Af///wD+kE3//pBN//6QTf/+kE2M////AP///wD///8A////AAAAAAT+kE3//pBN//6QTf/+kE3/////AP///wD///8Av7+/AP6QTf/+kE3//pBN//6QTYy/v78A////AL+/vwD+kE3//pBN//6QTf/+kE3//pBN/////wD///8A////AP///wD///8A/pBN//6QTf/+kE3//pBNjD8/PwL+kE2M/pBN//6QTf/+kE3//pBN//6QTf////8A////AP///wD///8A////AP///wD+kE3//pBN//6QTf/+kE3//pBN//6QTf/+kE3/CgIPE////wD+kE3/////AP///wD///8AQxBrAEMQawBDEGsA////AP6QTYz+kE3//pBN//6QTf/+kE3//pBNjP///wD///8A////AEMQawAAAAAAAAAAAEAOaABADmgAQA5oAP///wD///8Af39/AP6QTf/+kE3//pBNjP///wD///8A////AP///wBADmgAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A//8AAP9/AAD8HwAA+A8AAOhHAADg4QAA4fAAAODBAACDBwAAD4cAAIcHAADCBwAA4DcAAPA/AAD8fwAA//8AAA==" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./public/main.css">
+  </head>
+  <body class="valign-wrapper teal lighten-5">
+    
+    <div class="container z-depth-1 white">
+      
+      <h3 class="header center teal-text">Metric-Imperial Converter</h3>
+      <div class="row center-cols-in-row">
+        <div class="col valign-wrapper">
+          gallons <i class="tiny material-icons">swap_horiz</i> liters
+        </div>
+        <div class="col valign-wrapper">
+          pounds <i class="tiny material-icons">swap_horiz</i> kilograms
+        </div>
+        <div class="col valign-wrapper">
+          miles <i class="tiny material-icons">swap_horiz</i> kilometers
+        </div>
+      </div>
+      <div class="row center">
+        <form id="convertForm" class="col m6 offset-m3 s12 valign-wrapper">
+          <div class="input-field col s8">
+            <input type="text" id="convertField" class="validate" name="input" placeholder="4gal" required>
+          </div>
+          <div class="input-field col s4">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="row center row-result">
+        
+          <div class="preloader-wrapper small active hide">
+            <div class="spinner-layer spinner-green-only">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        
+        <div id="result" class="col s12 flow-text teal-text"></div>
+      </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
+            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+            crossorigin="anonymous"></script>
+    <script>
+      var jq = $.noConflict();
+      jq(function() {
+        jq('#convertForm').submit(function(event) {
+          event.preventDefault();
+          jq('#result').text('');          
+          jq('.preloader-wrapper').removeClass('hide');
+          jq.ajax({
+            url: '/api/convert',
+            type: 'get',
+            data: jq('#convertForm').serialize(),
+            success: function(data) {
+              jq('.preloader-wrapper').addClass('hide');
+              jq('#result').text(data.string);
+              jq('#convertForm').trigger('reset');              
+            },
+            error: function(xhr, textStatus, error){
+              jq('.preloader-wrapper').addClass('hide');
+              jq('#result').text(xhr.responseJSON.error);              
+            }
+          });
+        });
+      });
+   </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
+</html>
