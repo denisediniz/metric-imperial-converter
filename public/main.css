@@ -1,0 +1,13 @@
+body {
+  height: 100vh;
+}
+
+.center-cols-in-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.row-result {
+  min-height: 50px;
+}
